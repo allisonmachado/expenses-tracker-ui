@@ -82,7 +82,19 @@ export default function ListExpenses({ expenseService }) {
       : validArgs === false ?
         <Redirect to={{ pathname: "/404-not-found" }} />
         : <>
-          <Title>{month} Expenses, {year}</Title>
+          <div className="row">
+            <div className="col-md-10">
+              <h1>{month} Expenses, {year}</h1>
+            </div>
+            <div className="col-md-2 d-none d-lg-block d-xl-block">
+              <Link to={`${url}/create`}>
+                <button type="button" className="btn btn-block btn-light">
+                  New Expense
+                </button>
+              </Link>
+            </div>
+          </div>
+          <hr></hr>
           {deleteError && <Alert type="danger" message={deleteError} />}
           {expenses.length > 0 || <h5>No expenses were registered in this period</h5>}
           {expenses.map(expense => <div className="card mt-2 mb-2" key={expense._id}>
@@ -93,21 +105,16 @@ export default function ListExpenses({ expenseService }) {
               <Link to={`${url}/update/${expense._id}`} className="btn btn-link">
                 Edit
               </Link>
-              <button 
+              <button
                 type="button"
                 className="btn btn-link"
                 data-toggle="modal"
-                data-target="#confirmationModal" 
+                data-target="#confirmationModal"
                 onClick={() => setSelectedExpense({ _id: expense._id, title: expense.title })}>
-                  Delete
+                Delete
               </button>
             </div>
           </div>)}
-          <Link to={`${url}/create`}>
-            <button type="button" className="btn btn-primary float-right">
-              Create
-            </button>
-          </Link>
           <ConfirmationModal
             title="Confirmation"
             action="Delete"
