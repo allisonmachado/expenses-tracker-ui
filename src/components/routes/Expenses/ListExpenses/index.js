@@ -1,20 +1,22 @@
-import { useParams, useRouteMatch, Redirect, Link } from "react-router-dom";
+import { useParams, useRouteMatch, Redirect, Link, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Joi from "joi";
 
-import Title from "../../../util/Title";
 import ErrorList from "../../../util/ErrorList";
 import PaydBadge from "../../../util/PaydBadge";
 import LoadingLine from "../../../util/LoadingLine";
 
-import { MONTHS_TO_INT } from "../../../../lib/Constants";
+import { INT_TO_MONTHS, MONTHS_TO_INT } from "../../../../lib/Constants";
 import ConfirmationModal from "../../../util/ConfirmationModal";
 import Alert from "../../../util/Alert";
 
 export default function ListExpenses({ expenseService }) {
+  const history = useHistory();
   const { year } = useParams();
   const { month } = useParams();
   const { url } = useRouteMatch();
+
+  const monthNumber = Number(MONTHS_TO_INT[month]);
 
   const [selectedExpense, setSelectedExpense] = useState({
     _id: 0, title: "",
@@ -43,7 +45,7 @@ export default function ListExpenses({ expenseService }) {
     async function fetchExpenses() {
       try {
         const loadedExpenses = await expenseService.getAll();
-        setExpenses(loadedExpenses[year][MONTHS_TO_INT[month]]);
+        setExpenses(loadedExpenses[year][monthNumber]);
       } catch (error) {
         if (error.message.includes("Cannot read properties")) {
           setValidArgs(false);
@@ -62,7 +64,7 @@ export default function ListExpenses({ expenseService }) {
       fetchExpenses();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [month]);
 
   async function deleteExpense(expense) {
     try {
@@ -72,6 +74,22 @@ export default function ListExpenses({ expenseService }) {
     } catch (error) {
       setDeleteError(error.message);
       setTimeout(() => setDeleteError(""), 3000);
+    }
+  }
+
+  function handlePrev() {
+    const nextMonthNumber = monthNumber - 1;
+    const nextMonth = INT_TO_MONTHS[nextMonthNumber];
+    if (nextMonth) {
+      history.push(`/expenses/${year}/${nextMonth}`);
+    }
+  }
+
+  function handleNext() {
+    const nextMonthNumber = monthNumber + 1;
+    const nextMonth = INT_TO_MONTHS[nextMonthNumber];
+    if (nextMonth) {
+      history.push(`/expenses/${year}/${nextMonth}`);
     }
   }
 
@@ -115,6 +133,19 @@ export default function ListExpenses({ expenseService }) {
               </button>
             </div>
           </div>)}
+          <hr></hr>
+          <div className="row">
+            <div className="col">
+              <button type="button" className="btn btn-light float-left" onClick={() => handlePrev()}>
+                Prev
+              </button>
+            </div>
+            <div className="col">
+              <button type="button" className="btn btn-light float-right" onClick={() => handleNext()}>
+                Next
+              </button>
+            </div>
+          </div>
           <ConfirmationModal
             title="Confirmation"
             action="Delete"
