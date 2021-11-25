@@ -1,9 +1,11 @@
 import { Switch, useRouteMatch } from "react-router-dom";
 
 import PrivateRoute from "../PrivateRoute";
+
 import CreateExpense from "./CreateExpense";
-import ListExpenses from "./ListExpenses";
 import UpdateExpense from "./UpdateExpense";
+import ListExpenses from "./ListExpenses";
+import ListMonths from "./ListMonths";
 
 export default function Expenses({ expenseService }) {
   const { path } = useRouteMatch();
@@ -18,6 +20,9 @@ export default function Expenses({ expenseService }) {
       </PrivateRoute>
       <PrivateRoute path={`${path}/:year/:month`}>
         <ListExpenses expenseService={expenseService} />
+      </PrivateRoute>
+      <PrivateRoute path={`${path}/:year/`}>
+        <ListMonths expenseService={expenseService} />
       </PrivateRoute>
     </Switch>
   );

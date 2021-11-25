@@ -1,6 +1,5 @@
-import { useParams, Redirect } from "react-router-dom";
+import { useParams, Redirect, useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import Joi from "joi";
 
 import LoadingLine from "../../../util/LoadingLine";
