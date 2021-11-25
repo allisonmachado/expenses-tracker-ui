@@ -27,7 +27,7 @@ export default function ListMonths({ expenseService }) {
         const loadedYears = Object.keys(loadedExpenses).sort().reverse();
         const yearIndex = loadedYears.indexOf(year);
 
-        if (yearIndex > 0) {
+        if (yearIndex > -1) {
           const loadedMonths = loadedYears.length > 0
             ? Object.keys(loadedExpenses[loadedYears[yearIndex]])
             : [];
