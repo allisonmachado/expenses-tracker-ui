@@ -15,6 +15,7 @@ export default function ListMonths({ expenseService }) {
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState([]);
 
+  const [fullExpenses, setFullExpenses] = useState(null);
   const [expenses, setExpenses] = useState(null);
   const [years, setYears] = useState([]);
   const [months, setMonths] = useState([]);
@@ -32,10 +33,11 @@ export default function ListMonths({ expenseService }) {
             ? Object.keys(loadedExpenses[loadedYears[yearIndex]])
             : [];
 
-          setCurrentYearIndex(yearIndex);
+          setFullExpenses(loadedExpenses);
           setExpenses(loadedExpenses);
           setYears(loadedYears);
           setMonths(loadedMonths);
+          setCurrentYearIndex(yearIndex);
         }
       } catch (error) {
         setErrors([error.message]);
@@ -88,7 +90,12 @@ export default function ListMonths({ expenseService }) {
               className="list-group-item list-group-item-action"
               key={currentYearIndex + month}
             >
-              {INT_TO_MONTHS[month]}
+              <div className="d-flex w-100 justify-content-between">
+                <h5 className="mb-1">{INT_TO_MONTHS[month]}</h5>
+                <small>
+                  {fullExpenses[years[currentYearIndex]][month].map(e => e.value).reduce((acc, curr) => acc + curr, 0)}€
+                </small>
+              </div>
             </Link>)}
           </div>
           <hr></hr>

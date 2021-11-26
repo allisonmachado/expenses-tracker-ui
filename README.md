@@ -26,12 +26,13 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
+- Add values sum functionality in ListMonths
+- Add values sum functionality in ListExpenses
 - Add expense clone functionality
-- Add values sum functionality
-- Replicate expenses to Revenues
 - Code/Components refactoring
   - Use custom hooks to reuse code inside components
   - Remove ignore lines from linter
+- Replicate expenses to Revenues
 - Test app edge cases:
   - no data loaded
   - empty list loaded
