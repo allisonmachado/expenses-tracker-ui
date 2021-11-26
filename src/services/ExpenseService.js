@@ -28,4 +28,9 @@ export default class ExpenseService {
     const loggedUser = this.authRepository.getAuthenticatedUser();
     return this.expenseFetch.delete(id, loggedUser?.accessToken);
   }
+
+  async clone(period) {
+    const loggedUser = this.authRepository.getAuthenticatedUser();
+    return this.expenseFetch.clone(period, loggedUser?.accessToken);
+  }
 }

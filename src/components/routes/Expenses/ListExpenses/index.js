@@ -79,6 +79,18 @@ export default function ListExpenses({ expenseService }) {
     }
   }
 
+  async function cloneExpenses() {
+    try {
+      await expenseService.clone({
+        year: Number(year),
+        month: monthNumber
+      });
+      notifySuccessAlert(`"${month} Expenses, ${year}" cloned successfully`, 3);
+    } catch (error) {
+      notifyErrorAlert(error.message, 3);
+    }
+  }
+
   async function togglePayd(expense) {
     try {
       expense.payd = !expense.payd;
@@ -128,11 +140,12 @@ export default function ListExpenses({ expenseService }) {
               <h5>Total: {expenses.map(e => e.value).reduce((acc, curr) => acc + curr, 0)}€</h5>
             </div>
             <div className="col-md-2 d-none d-lg-block d-xl-block">
-              <Link to={`${url}/create`}>
-                <button type="button" className="btn btn-light">
-                  <i className="bi-plus"></i> New Expense
-                </button>
+              <Link to={`${url}/create`} className="btn btn-light btn-block">
+                <i className="bi-plus"></i> New Expense
               </Link>
+              <button type="button" className="btn btn-light btn-block" data-toggle="modal" data-target="#cloneExpensesConfirmationModal">
+                <i className="bi-plus"></i> Clone Expenses
+              </button>
             </div>
           </div>
           <hr></hr>
@@ -177,5 +190,10 @@ export default function ListExpenses({ expenseService }) {
             title="Confirmation"
             action={`Delete expense: "${selectedExpense.title}"`}
             actionHandler={() => deleteExpense(selectedExpense)} />
+          <ConfirmationModal
+            id="cloneExpensesConfirmationModal"
+            title="Confirmation"
+            action={`Confirm cloning expenses from "${month} Expenses, ${year}" into current month?`}
+            actionHandler={() => cloneExpenses()} />
         </>);
 }
