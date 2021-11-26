@@ -1,4 +1,4 @@
-export default function ConfirmationModal({ id, title, action, name, item, deleteHandler }) {
+export default function ConfirmationModal({ id, title, action, actionHandler }) {
   return (
     <div className="modal fade" id={id} tabIndex={-1} aria-labelledby={`${id}Label`} aria-hidden="true">
       <div className="modal-dialog">
@@ -10,11 +10,11 @@ export default function ConfirmationModal({ id, title, action, name, item, delet
             </button>
           </div>
           <div className="modal-body">
-            {action}: <span className="font-weight-bold">{name}</span>?
+            {action}
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-dismiss="modal">No</button>
-            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => deleteHandler(item)}>Yes</button>
+            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={actionHandler}>Yes</button>
           </div>
         </div>
       </div>

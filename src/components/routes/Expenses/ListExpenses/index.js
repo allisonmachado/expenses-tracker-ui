@@ -175,9 +175,7 @@ export default function ListExpenses({ expenseService }) {
           <ConfirmationModal
             id="deleteExpenseConfirmationModal"
             title="Confirmation"
-            action="Delete"
-            item={selectedExpense}
-            name={selectedExpense.title}
-            deleteHandler={deleteExpense} />
+            action={`Delete expense: "${selectedExpense.title}"`}
+            actionHandler={() => deleteExpense(selectedExpense)} />
         </>);
 }
