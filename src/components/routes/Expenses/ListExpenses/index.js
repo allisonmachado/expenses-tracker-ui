@@ -79,6 +79,26 @@ export default function ListExpenses({ expenseService }) {
     }
   }
 
+  async function togglePayd(expense) {
+    try {
+      expense.payd = !expense.payd;
+      await expenseService.update({
+        _id: expense._id,
+        title: expense.title,
+        from: {
+          year: Number(expense.from.year),
+          month: Number(expense.from.month)
+        },
+        value: Number(expense.value),
+        payd: expense.payd,
+        ...(expense.notes ? { notes: expense.notes } : {})
+      });
+      setExpenses([...expenses]);
+    } catch (error) {
+      notifyErrorAlert(error.message, 3);
+    }
+  }
+
   function handlePrev() {
     const nextMonthNumber = monthNumber - 1;
     const nextMonth = INT_TO_MONTHS[nextMonthNumber];
@@ -121,7 +141,9 @@ export default function ListExpenses({ expenseService }) {
           {expenses.map(expense => <div className="card mt-2 mb-2" key={expense._id}>
             <div className="card-body">
               <h5 className="card-title">{expense.title}</h5>
-              <h6 className="card-subtitle mb-2 text-muted">€{expense.value} <PaydBadge payd={expense.payd} /></h6>
+              <h6 className="card-subtitle mb-2 text-muted">
+                €{expense.value} <PaydBadge payd={expense.payd} onClick={() => togglePayd(expense)} />
+              </h6>
               <p className="card-text">{expense.notes}</p>
               <Link to={`${url}/update/${expense._id}`} className="btn btn-link">
                 Edit

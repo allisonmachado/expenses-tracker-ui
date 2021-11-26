@@ -26,8 +26,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- Add successfull delete alert
-- Allow mark pay/unpayd from listing
 - Add expense clone functionality
 - Add values sum functionality
 - Replicate expenses to Revenues
