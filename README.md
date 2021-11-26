@@ -26,7 +26,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- fix indentation in all files
 - Organize imports
 - Revise modal implementations
 - Remove ignore lines from linter

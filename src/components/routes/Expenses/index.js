@@ -1,7 +1,6 @@
 import { Switch, useRouteMatch } from "react-router-dom";
 
 import PrivateRoute from "../PrivateRoute";
-
 import CreateExpense from "./CreateExpense";
 import UpdateExpense from "./UpdateExpense";
 import ListExpenses from "./ListExpenses";

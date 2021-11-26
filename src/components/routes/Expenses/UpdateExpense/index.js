@@ -1,6 +1,5 @@
-import { useParams, Redirect } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import LoadingLine from "../../../util/LoadingLine";
 import ErrorList from "../../../util/ErrorList";

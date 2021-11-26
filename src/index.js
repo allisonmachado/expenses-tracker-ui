@@ -7,6 +7,9 @@ import AuthFetch from "./data/http/AuthFetch";
 import AuthService from "./services/AuthService";
 import AuthRepository from "./data/storage/AuthRepository";
 
+import ExpenseFetch from "./data/http/ExpenseFetch";
+import ExpenseService from "./services/ExpenseService";
+
 import { Environment } from "./lib/Environment";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -15,8 +18,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "jquery/dist/jquery.slim";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "./index.css";
-import ExpenseFetch from "./data/http/ExpenseFetch";
-import ExpenseService from "./services/ExpenseService";
 
 const BACKEND_API = Environment.getBackendApi();
 

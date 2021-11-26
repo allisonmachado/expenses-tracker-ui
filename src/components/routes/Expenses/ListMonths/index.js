@@ -1,11 +1,11 @@
 import { Link, useParams, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+import CreateExpenseModal from "../../../util/CreateExpenseModal";
 import LoadingLine from "../../../util/LoadingLine";
 import ErrorList from "../../../util/ErrorList";
 
 import { INT_TO_MONTHS } from "../../../../lib/Constants";
-import CreateExpenseModal from "../../../util/CreateExpenseModal";
 
 export default function ListMonths({ expenseService }) {
   const history = useHistory();
@@ -31,7 +31,7 @@ export default function ListMonths({ expenseService }) {
           const loadedMonths = loadedYears.length > 0
             ? Object.keys(loadedExpenses[loadedYears[yearIndex]])
             : [];
-  
+
           setCurrentYearIndex(yearIndex);
           setExpenses(loadedExpenses);
           setYears(loadedYears);

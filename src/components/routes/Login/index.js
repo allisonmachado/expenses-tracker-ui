@@ -1,12 +1,13 @@
+import { useHistory, useLocation } from "react-router-dom";
+import { useState } from "react";
+
+import ReCAPTCHA from "react-google-recaptcha";
+
 import React from "react";
 import Title from "../../util/Title";
-import ReCAPTCHA from "react-google-recaptcha";
 import ErrorList from "../../util/ErrorList";
 import LoadingLine from "../../util/LoadingLine";
-
-import { useState } from "react";
 import { useAuthState } from "../../../hooks/useAuthState";
-import { useHistory, useLocation } from "react-router-dom";
 
 export default function LoginPage({ authService }) {
   const auth = useAuthState();
