@@ -137,10 +137,14 @@ export default function CreateExpense({ expenseService }) {
         </div>
 
         {informError && <ErrorList errors={[error]}></ErrorList>}
-        {saved || <button type="submit" className="btn btn-primary" disabled={disabled}>Submit</button>}
+        {saved || <button type="submit" className="btn btn-light" disabled={disabled}>
+          <i className="bi bi-save"></i> Save
+        </button>}
       </form>
 
-      {saved && <button className="btn btn-secondary" onClick={() => history.goBack()}>Back</button>}
+      {saved && <button className="btn btn-secondary" onClick={() => history.goBack()}>
+        <i className="bi-arrow-left-short"></i> Back
+      </button>}
       <br></br>
       {disabled && !saved && <LoadingLine>Loading...</LoadingLine>}
     </>);

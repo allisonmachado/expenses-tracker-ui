@@ -56,7 +56,14 @@ export default function CreateExpenseModal() {
             </form>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => history.push(`/expenses/${year}/${INT_TO_MONTHS[month]}/create`)}>Confirm</button>
+            <button
+              type="button"
+              className="btn btn-light"
+              data-dismiss="modal"
+              onClick={() => history.push(`/expenses/${year}/${INT_TO_MONTHS[month]}/create`)}>
+                <i className="bi bi-check"></i> 
+                Confirm
+            </button>
           </div>
         </div>
       </div>
