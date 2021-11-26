@@ -9,7 +9,7 @@ export class Environment {
   static getUserInfo() {
     return process.env.REACT_APP_USERINFO;
   }
-  
+
   static getHost() {
     return process.env.REACT_APP_HOST;
   }

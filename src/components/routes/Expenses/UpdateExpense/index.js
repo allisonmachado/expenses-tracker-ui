@@ -68,7 +68,7 @@ export default function UpdateExpense({ expenseService }) {
         setExpense(loadedExpense);
       } catch (error) {
         if (error.message === "Requested resource not found"
-        || error.message === "Verify all mandatory fields and formats") {
+          || error.message === "Verify all mandatory fields and formats") {
           setNotFound(true);
         } else {
           setLoadingErrors([error.message]);
@@ -89,64 +89,64 @@ export default function UpdateExpense({ expenseService }) {
       : notFound ?
         <Redirect to={{ pathname: "/404-not-found" }} />
         : <> <Title>Update Expense: {expense.title}</Title>
-        {saved && <Alert type="success" message="Expense saved successfully" />}
-        <form onSubmit={handleSubmit} noValidate>
-  
-          <div className="form-group">
-            <label htmlFor="titleInput">Title<strong className="text-danger">*</strong></label>
-            <input
-              id="titleInput"
-              className="form-control"
-              type="text"
-              name="title"
-              value={expense.title}
-              disabled={disabled}
-              onChange={handleFormChange} />
-          </div>
-  
-          <div className="form-group">
-            <label htmlFor="valueInput">Value</label>
-            <input
-              id="valueInput"
-              className="form-control"
-              type="number"
-              name="value"
-              value={expense.value}
-              disabled={disabled}
-              onChange={handleFormChange} />
-          </div>
-  
-          <div className="form-group">
-            <label htmlFor="notesInput">Notes</label>
-            <textarea
-              id="notesInput"
-              className="form-control"
-              rows="3"
-              name="notes"
-              value={expense.notes}
-              disabled={disabled}
-              onChange={handleFormChange}>
-            </textarea>
-  
-            <div className="form-check">
+          {saved && <Alert type="success" message="Expense saved successfully" />}
+          <form onSubmit={handleSubmit} noValidate>
+
+            <div className="form-group">
+              <label htmlFor="titleInput">Title<strong className="text-danger">*</strong></label>
               <input
-                id="paydInput"
-                className="form-check-input"
-                type="checkbox"
-                name="payd"
-                checked={expense.payd}
+                id="titleInput"
+                className="form-control"
+                type="text"
+                name="title"
+                value={expense.title}
                 disabled={disabled}
                 onChange={handleFormChange} />
-              <label htmlFor="paydInput">Payd</label>
             </div>
-          </div>
-  
-          {informError && <ErrorList errors={[formError]}></ErrorList>}
-          {saved || <button type="submit" className="btn btn-primary" disabled={disabled}>Submit</button>}
-        </form>
-  
-        {saved && <button className="btn btn-secondary" onClick={() => history.goBack()}>Back</button>}
-        <br></br>
-        {disabled && !saved && <LoadingLine>Loading...</LoadingLine>}
-      </>);
+
+            <div className="form-group">
+              <label htmlFor="valueInput">Value</label>
+              <input
+                id="valueInput"
+                className="form-control"
+                type="number"
+                name="value"
+                value={expense.value}
+                disabled={disabled}
+                onChange={handleFormChange} />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="notesInput">Notes</label>
+              <textarea
+                id="notesInput"
+                className="form-control"
+                rows="3"
+                name="notes"
+                value={expense.notes}
+                disabled={disabled}
+                onChange={handleFormChange}>
+              </textarea>
+
+              <div className="form-check">
+                <input
+                  id="paydInput"
+                  className="form-check-input"
+                  type="checkbox"
+                  name="payd"
+                  checked={expense.payd}
+                  disabled={disabled}
+                  onChange={handleFormChange} />
+                <label htmlFor="paydInput">Payd</label>
+              </div>
+            </div>
+
+            {informError && <ErrorList errors={[formError]}></ErrorList>}
+            {saved || <button type="submit" className="btn btn-primary" disabled={disabled}>Submit</button>}
+          </form>
+
+          {saved && <button className="btn btn-secondary" onClick={() => history.goBack()}>Back</button>}
+          <br></br>
+          {disabled && !saved && <LoadingLine>Loading...</LoadingLine>}
+        </>);
 }

@@ -78,7 +78,7 @@ export default function CreateExpense({ expenseService }) {
     }
     const receivedValidArgs = checkValidArgs(year, month);
     setValidArgs(receivedValidArgs);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (validArgs === false
