@@ -3,18 +3,17 @@ import { useState, useEffect } from "react";
 
 import CreateExpenseModal from "../../../util/CreateExpenseModal";
 import LoadingLine from "../../../util/LoadingLine";
+import SimpleDate from "../../../../lib/SimpleDate";
 import ErrorList from "../../../util/ErrorList";
 
 import { INT_TO_MONTHS } from "../../../../lib/Constants";
 
 export default function ListMonths({ expenseService }) {
   const history = useHistory();
-
   const { year } = useParams();
 
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState([]);
-
   const [fullExpenses, setFullExpenses] = useState(null);
   const [expenses, setExpenses] = useState(null);
   const [years, setYears] = useState([]);
@@ -87,7 +86,7 @@ export default function ListMonths({ expenseService }) {
           <div className="list-group">
             {months.map(month => <Link
               to={`/expenses/${years[currentYearIndex]}/${INT_TO_MONTHS[month]}`}
-              className="list-group-item list-group-item-action"
+              className={`list-group-item list-group-item-action ${SimpleDate.isCurrentYearMonth({year: years[currentYearIndex], month}) && "list-group-item-dark"}`}
               key={currentYearIndex + month}
             >
               <div className="d-flex w-100 justify-content-between">

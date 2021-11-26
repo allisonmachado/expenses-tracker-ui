@@ -14,7 +14,6 @@ import { INT_TO_MONTHS, MONTHS_TO_INT } from "../../../../lib/Constants";
 
 export default function ListExpenses({ expenseService }) {
   const history = useHistory();
-  const currentDate = SimpleDate.getCurrentYearMonth();
 
   const { year } = useParams();
   const { month } = useParams();
@@ -22,7 +21,10 @@ export default function ListExpenses({ expenseService }) {
 
   const monthNumber = Number(MONTHS_TO_INT[month]);
 
-  const hideCloneOption = (Number(year) === currentDate.year) && (monthNumber === currentDate.month);
+  const hideCloneOption = SimpleDate.isCurrentYearMonth({
+    year,
+    month: monthNumber,
+  });
 
   const [selectedExpense, setSelectedExpense] = useState({
     _id: 0, title: "",
@@ -164,12 +166,12 @@ export default function ListExpenses({ expenseService }) {
                 €{expense.value} <PaydBadge payd={expense.payd} onClick={() => togglePayd(expense)} />
               </h6>
               <p className="card-text">{expense.notes}</p>
-              <Link to={`${url}/update/${expense._id}`} className="btn btn-link">
+              <Link to={`${url}/update/${expense._id}`} className="btn btn-light mr-2">
                 <i className="bi-pencil"></i> Edit
               </Link>
               <button
                 type="button"
-                className="btn btn-link"
+                className="btn btn-light"
                 data-toggle="modal"
                 data-target="#deleteExpenseConfirmationModal"
                 onClick={() => setSelectedExpense({ _id: expense._id, title: expense.title })}>

@@ -6,4 +6,9 @@ export default class SimpleDate {
       year: currentDate.getFullYear(),
     };
   }
+
+  static isCurrentYearMonth(givenDate) {
+    const currentDate = this.getCurrentYearMonth();
+    return (Number(givenDate.year) === currentDate.year) && (Number(givenDate.month) === currentDate.month);
+  }
 }
