@@ -125,6 +125,7 @@ export default function ListExpenses({ expenseService }) {
           <div className="row">
             <div className="col-md-10">
               <h1>{month} Expenses, {year}</h1>
+              <h5>Total: {expenses.map(e => e.value).reduce((acc, curr) => acc + curr, 0)}€</h5>
             </div>
             <div className="col-md-2 d-none d-lg-block d-xl-block">
               <Link to={`${url}/create`}>

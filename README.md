@@ -26,8 +26,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- Add values sum functionality in ListMonths
-- Add values sum functionality in ListExpenses
 - Add expense clone functionality
 - Code/Components refactoring
   - Use custom hooks to reuse code inside components
