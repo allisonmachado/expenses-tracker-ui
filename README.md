@@ -26,7 +26,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- Improve expense cards (frontend)
 - Sort expenses by value: top is highest
 - Add confirmation before logout
 - Code/Components refactoring
