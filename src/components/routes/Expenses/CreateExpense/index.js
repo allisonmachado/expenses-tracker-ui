@@ -88,7 +88,7 @@ export default function CreateExpense({ expenseService }) {
       <form onSubmit={handleSubmit} noValidate>
 
         <div className="form-group">
-          <label htmlFor="titleInput">Title*</label>
+          <label htmlFor="titleInput">Title<strong className="text-danger">*</strong></label>
           <input
             id="titleInput"
             className="form-control"
@@ -100,7 +100,7 @@ export default function CreateExpense({ expenseService }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="valueInput">Value*</label>
+          <label htmlFor="valueInput">Value</label>
           <input
             id="valueInput"
             className="form-control"

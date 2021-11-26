@@ -26,22 +26,25 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- Fix lint double quotes
-- Edit Expense
+- check Edit Expense issues
+- fix indentation in all files
 - Organize imports
 - Revise modal implementations
+- Remove ignore lines from linter
+- Use custom hooks to reuse code inside components
+- Review services/repo's naming scheme
+- Add successfull delete alert
+- Code refactoring
+- Allow mark pay/unpayd from listing
+- Add expense clone functionality
+- Add values sum functionality
+- Replicate expenses to Revenues
 - Test app edge cases:
   - no data loaded
   - empty list loaded
   - no internet connection
   - access token expired
   - test routes extensively (try to break)
-- Home page be able to deal with back button from navigation
-- List total expenses
-- Remove ignore lines from linter
-- Use custom hooks to reuse code inside components
-- Review services/repo's naming scheme
+- Deploy into free hosting service
+- Create progressive webapp
 - Upgrade current frontent to use [Reactstrap](https://reactstrap.github.io/?path=/story/home-installation--page)
-- Replicate expenses to profits
-- Add successfull delete alert
-- Code refactoring
