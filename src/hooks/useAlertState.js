@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-export function useAlert() {
+export function useAlertState() {
   const [alert, setAlert] = useState("");
 
-  function setNotification(message, timeInSecs) {
+  function notify(message, timeInSecs) {
     setAlert(message);
     setTimeout(() => setAlert(""), timeInSecs * 1000);
   }
 
-  return [alert, setNotification];
+  return [alert, notify];
 }
