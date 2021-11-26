@@ -129,8 +129,8 @@ export default function ListExpenses({ expenseService }) {
             </div>
             <div className="col-md-2 d-none d-lg-block d-xl-block">
               <Link to={`${url}/create`}>
-                <button type="button" className="btn btn-block btn-light">
-                  New Expense
+                <button type="button" className="btn btn-light">
+                  <i className="bi-plus"></i> New Expense
                 </button>
               </Link>
             </div>

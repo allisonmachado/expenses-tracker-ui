@@ -74,8 +74,8 @@ export default function ListMonths({ expenseService }) {
           <h1>Expenses {years[currentYearIndex]}</h1>
         </div>
         <div className="col-md-2 d-none d-lg-block d-xl-block">
-          <button type="button" className="btn btn-block btn-light" data-toggle="modal" data-target="#createExpenseModal">
-            New Expense
+          <button type="button" className="btn btn-light" data-toggle="modal" data-target="#createExpenseModal">
+            <i className="bi-plus"></i> New Expense
           </button>
         </div>
       </div>
@@ -102,12 +102,12 @@ export default function ListMonths({ expenseService }) {
           <div className="row">
             <div className="col">
               <button type="button" className="btn btn-light float-left" onClick={() => handlePrev()}>
-                Prev
+                <i className="bi-arrow-left-short"></i> Prev
               </button>
             </div>
             <div className="col">
               <button type="button" className="btn btn-light float-right" onClick={() => handleNext()}>
-                Next
+                Next <i className="bi-arrow-right-short"></i>
               </button>
             </div>
           </div>
@@ -117,8 +117,8 @@ export default function ListMonths({ expenseService }) {
               <h3>You have no expenses registered</h3>
             </div>
             <div className="col-md-2 d-none d-lg-block d-xl-block">
-              <button type="button" className="btn btn-block btn-light">
-                New Expense
+              <button type="button" className="btn btn-light" data-toggle="modal" data-target="#createExpenseModal">
+                <i className="bi-plus"></i> New Expense
               </button>
             </div>
           </div>
