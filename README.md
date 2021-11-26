@@ -26,7 +26,12 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- Add expense clone functionality
+- Improve expense cards (frontend)
+- Sort expenses by value: top is highest
+- Add confirmation before logout
+- Code/Components refactoring
+  - Use custom hooks to reuse code inside components
+  - Remove ignore lines from linter
 - Confirm app is usable for expenses functionality
   - Test app edge cases:
     - no data loaded
@@ -34,9 +39,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
     - no internet connection
     - access token expired
     - test routes extensively (try to break)
-- Code/Components refactoring
-  - Use custom hooks to reuse code inside components
-  - Remove ignore lines from linter
 - Replicate expenses to Revenues
 - Deploy into free hosting service
 - Create progressive webapp

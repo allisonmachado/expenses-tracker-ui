@@ -13,11 +13,16 @@ import { INT_TO_MONTHS, MONTHS_TO_INT } from "../../../../lib/Constants";
 
 export default function ListExpenses({ expenseService }) {
   const history = useHistory();
+  const currentMonth = new Date().getMonth() + 1;
+  const currentYear = new Date().getFullYear();
+
   const { year } = useParams();
   const { month } = useParams();
   const { url } = useRouteMatch();
 
   const monthNumber = Number(MONTHS_TO_INT[month]);
+
+  const hideCloneOption = (Number(year) === currentYear) && (monthNumber === currentMonth);
 
   const [selectedExpense, setSelectedExpense] = useState({
     _id: 0, title: "",
@@ -143,9 +148,9 @@ export default function ListExpenses({ expenseService }) {
               <Link to={`${url}/create`} className="btn btn-light btn-block">
                 <i className="bi-plus"></i> New Expense
               </Link>
-              <button type="button" className="btn btn-light btn-block" data-toggle="modal" data-target="#cloneExpensesConfirmationModal">
-                <i className="bi-plus"></i> Clone Expenses
-              </button>
+              {hideCloneOption || <button type="button" className="btn btn-light btn-block" data-toggle="modal" data-target="#cloneExpensesConfirmationModal">
+                <i className="bi-front"></i> Clone Expenses
+              </button>}
             </div>
           </div>
           <hr></hr>
@@ -160,7 +165,7 @@ export default function ListExpenses({ expenseService }) {
               </h6>
               <p className="card-text">{expense.notes}</p>
               <Link to={`${url}/update/${expense._id}`} className="btn btn-link">
-                Edit
+                <i className="bi-pencil"></i> Edit
               </Link>
               <button
                 type="button"
@@ -168,7 +173,7 @@ export default function ListExpenses({ expenseService }) {
                 data-toggle="modal"
                 data-target="#deleteExpenseConfirmationModal"
                 onClick={() => setSelectedExpense({ _id: expense._id, title: expense.title })}>
-                Delete
+                <i className="bi-trash"></i> Delete
               </button>
             </div>
           </div>)}
