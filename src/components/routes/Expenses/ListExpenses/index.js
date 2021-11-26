@@ -127,7 +127,7 @@ export default function ListExpenses({ expenseService }) {
                 type="button"
                 className="btn btn-link"
                 data-toggle="modal"
-                data-target="#confirmationModal"
+                data-target="#deleteExpenseConfirmationModal"
                 onClick={() => setSelectedExpense({ _id: expense._id, title: expense.title })}>
                 Delete
               </button>
@@ -147,6 +147,7 @@ export default function ListExpenses({ expenseService }) {
             </div>
           </div>
           <ConfirmationModal
+            id="deleteExpenseConfirmationModal"
             title="Confirmation"
             action="Delete"
             item={selectedExpense}

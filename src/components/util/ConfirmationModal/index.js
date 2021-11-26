@@ -1,10 +1,10 @@
-export default function ConfirmationModal({ title, action, name, item, deleteHandler }) {
+export default function ConfirmationModal({ id, title, action, name, item, deleteHandler }) {
   return (
-    <div className="modal fade" id="confirmationModal" tabIndex={-1} aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div className="modal fade" id={id} tabIndex={-1} aria-labelledby={`${id}Label`} aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="confirmationModalLabel">{title}</h5>
+            <h5 className="modal-title" id={`${id}Label`}>{title}</h5>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>

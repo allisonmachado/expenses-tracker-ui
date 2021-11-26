@@ -26,17 +26,15 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- Organize imports
 - Revise modal implementations
-- Remove ignore lines from linter
-- Use custom hooks to reuse code inside components
-- Review services/repo's naming scheme
 - Add successfull delete alert
-- Code refactoring
 - Allow mark pay/unpayd from listing
 - Add expense clone functionality
 - Add values sum functionality
 - Replicate expenses to Revenues
+- Code/Components refactoring
+  - Use custom hooks to reuse code inside components
+  - Remove ignore lines from linter
 - Test app edge cases:
   - no data loaded
   - empty list loaded
