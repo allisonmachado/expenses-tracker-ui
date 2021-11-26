@@ -22,6 +22,7 @@ export default function ListExpenses({ expenseService }) {
     _id: 0, title: "",
   });
   const [deleteError, setDeleteError] = useState("");
+  const [successAlert, setSuccessAlert] = useState("");
   const [validArgs, setValidArgs] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState([]);
@@ -71,9 +72,11 @@ export default function ListExpenses({ expenseService }) {
       await expenseService.deleteById(expense._id);
       const currentExpenses = expenses.filter(e => e._id !== expense._id);
       setExpenses(currentExpenses);
+      setSuccessAlert(`Expense ${expense.title} deleted successfully`);
+      setTimeout(() => setSuccessAlert(""), 4000);
     } catch (error) {
       setDeleteError(error.message);
-      setTimeout(() => setDeleteError(""), 3000);
+      setTimeout(() => setDeleteError(""), 4000);
     }
   }
 
@@ -114,6 +117,7 @@ export default function ListExpenses({ expenseService }) {
           </div>
           <hr></hr>
           {deleteError && <Alert type="danger" message={deleteError} />}
+          {successAlert && <Alert type="success" message={successAlert} />}
           {expenses.length > 0 || <h5>No expenses were registered in this period</h5>}
           {expenses.map(expense => <div className="card mt-2 mb-2" key={expense._id}>
             <div className="card-body">

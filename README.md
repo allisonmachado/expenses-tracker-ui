@@ -26,7 +26,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- Revise modal implementations
 - Add successfull delete alert
 - Allow mark pay/unpayd from listing
 - Add expense clone functionality
