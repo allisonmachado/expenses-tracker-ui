@@ -53,8 +53,9 @@ export default function ListExpenses({ expenseService }) {
     }
     async function fetchExpenses() {
       try {
-        const loadedExpenses = await expenseService.getAll();
-        setExpenses(loadedExpenses[year][monthNumber]);
+        const fullExpensesObject = await expenseService.getAll();
+        const expensesList = fullExpensesObject[year][monthNumber];
+        setExpenses(expensesList.sort((a, b) => b.value - a.value)); // desc value
       } catch (error) {
         if (error.message.includes("Cannot read properties")) {
           setValidArgs(false);

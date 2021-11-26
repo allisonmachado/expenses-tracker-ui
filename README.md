@@ -26,7 +26,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- Sort expenses by value: top is highest
 - Add confirmation before logout
 - Code/Components refactoring
   - Use custom hooks to reuse code inside components
