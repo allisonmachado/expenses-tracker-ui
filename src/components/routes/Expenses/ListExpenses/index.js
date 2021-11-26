@@ -5,6 +5,7 @@ import Joi from "joi";
 import Alert from "../../../util/Alert";
 import ErrorList from "../../../util/ErrorList";
 import PaydBadge from "../../../util/PaydBadge";
+import SimpleDate from "../../../../lib/SimpleDate";
 import LoadingLine from "../../../util/LoadingLine";
 import ConfirmationModal from "../../../util/ConfirmationModal";
 
@@ -13,8 +14,7 @@ import { INT_TO_MONTHS, MONTHS_TO_INT } from "../../../../lib/Constants";
 
 export default function ListExpenses({ expenseService }) {
   const history = useHistory();
-  const currentMonth = new Date().getMonth() + 1;
-  const currentYear = new Date().getFullYear();
+  const currentDate = SimpleDate.getCurrentYearMonth();
 
   const { year } = useParams();
   const { month } = useParams();
@@ -22,7 +22,7 @@ export default function ListExpenses({ expenseService }) {
 
   const monthNumber = Number(MONTHS_TO_INT[month]);
 
-  const hideCloneOption = (Number(year) === currentYear) && (monthNumber === currentMonth);
+  const hideCloneOption = (Number(year) === currentDate.year) && (monthNumber === currentDate.month);
 
   const [selectedExpense, setSelectedExpense] = useState({
     _id: 0, title: "",

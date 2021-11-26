@@ -3,12 +3,14 @@ import { useState } from "react";
 
 import { INT_TO_MONTHS } from "../../../lib/Constants";
 
+import SimpleDate from "../../../lib/SimpleDate";
+
 export default function CreateExpenseModal() {
   const history = useHistory();
-  const currentTime = new Date();
+  const currentDate = SimpleDate.getCurrentYearMonth();
 
-  const [month, setMonth] = useState(currentTime.getMonth() + 1);
-  const [year, setYear] = useState(currentTime.getFullYear());
+  const [month, setMonth] = useState(currentDate.month);
+  const [year, setYear] = useState(currentDate.year);
 
   const monthOptions = Array.from({ length: 12 }, (_, i) => i + 1);
   const yearOptions = [year + 1, ...Array.from({ length: 4 }, (_, i) => year - i)];
