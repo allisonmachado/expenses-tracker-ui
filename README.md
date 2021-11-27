@@ -26,7 +26,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- Add confirmation before logout
 - Code/Components refactoring
   - Use custom hooks to reuse code inside components
   - Remove ignore lines from linter
@@ -37,7 +36,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
     - no internet connection
     - access token expired
     - test routes extensively (try to break)
-- Replicate expenses to Revenues
 - Deploy into free hosting service
 - Create progressive webapp
+- Replicate expenses to Revenues
 - Upgrade current frontent to use [Reactstrap](https://reactstrap.github.io/?path=/story/home-installation--page)
