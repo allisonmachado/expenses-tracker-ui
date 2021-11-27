@@ -1,6 +1,6 @@
 {
   "name": "expenses-tracker",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Allison Machado Gonçalves",
   "description": "Minimal user interface for the expenses-tracker project",
   "private": true,
