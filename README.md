@@ -26,6 +26,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
+- Make year navigation natural ordering from right to left 
 - Code/Components refactoring
   - Use custom hooks to reuse code inside components
   - Remove ignore lines from linter
