@@ -1,7 +1,7 @@
 import { Link, useParams, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import CreateExpenseModal from "../../../util/CreateExpenseModal";
+import NoExpensesWarning from "../../../util/NoExpensesWarning";
 import LoadingLine from "../../../util/LoadingLine";
 import SimpleDate from "../../../../lib/SimpleDate";
 import ErrorList from "../../../util/ErrorList";
@@ -110,21 +110,8 @@ export default function ListMonths({ expenseService }) {
               </button>
             </div>
           </div>
-        </> : <>
-          <div className="row">
-            <div className="col-md-10">
-              <h3>You have no expenses registered</h3>
-            </div>
-            <div className="col-md-2 d-none d-lg-block d-xl-block">
-              <button type="button" className="btn btn-light" data-toggle="modal" data-target="#createExpenseModal">
-                <i className="bi-plus"></i> New Expense
-              </button>
-            </div>
-          </div>
-          <hr></hr>
-        </>}
+        </> : <NoExpensesWarning />}
       </>}
     </>}
-    <CreateExpenseModal />
   </>);
 }

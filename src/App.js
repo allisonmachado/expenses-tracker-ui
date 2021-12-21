@@ -1,3 +1,4 @@
+import CreateExpenseModal from "./components/util/CreateExpenseModal";
 import Expenses from "./components/routes/Expenses";
 import NotFound from "./components/routes/NotFound";
 import Footer from "./components/layouts/Footer";
@@ -26,6 +27,7 @@ export default function App({ container }) {
             <NotFound />
           </Route>
         </Switch>
+        <CreateExpenseModal />
       </div>
     </main>
     <Footer />
