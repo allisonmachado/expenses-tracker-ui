@@ -37,3 +37,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 - Create progressive webapp
 - Replicate expenses to Revenues
 - Upgrade current frontent to use [Reactstrap](https://reactstrap.github.io/?path=/story/home-installation--page)
+- add terms of use page: https://favicon.io/terms-of-use/
