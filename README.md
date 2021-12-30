@@ -26,18 +26,14 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- Make year navigation natural ordering from right to left 
+- Allow editing in the mobile screen
+- Allow cloning some period to any date
+- Fix application title: it's not node-boost
+- Add unpayd total in monthly listing
+- improve login screen to only submit form after recaptcha is filled
 - Code/Components refactoring
   - Use custom hooks to reuse code inside components
   - Remove ignore lines from linter
-- Confirm app is usable for expenses functionality
-  - Test app edge cases:
-    - no data loaded
-    - empty list loaded
-    - no internet connection
-    - access token expired
-    - test routes extensively (try to break)
-- Deploy into free hosting service
 - Create progressive webapp
 - Replicate expenses to Revenues
 - Upgrade current frontent to use [Reactstrap](https://reactstrap.github.io/?path=/story/home-installation--page)

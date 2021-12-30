@@ -14,7 +14,6 @@ export default function ListMonths({ expenseService }) {
 
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState([]);
-  const [fullExpenses, setFullExpenses] = useState(null);
   const [expenses, setExpenses] = useState(null);
   const [years, setYears] = useState([]);
   const [months, setMonths] = useState([]);
@@ -24,7 +23,7 @@ export default function ListMonths({ expenseService }) {
     async function fetchExpenses() {
       try {
         const loadedExpenses = await expenseService.getAll();
-        const loadedYears = Object.keys(loadedExpenses).sort().reverse();
+        const loadedYears = getYearsFromExpenses(loadedExpenses);
         const yearIndex = loadedYears.indexOf(year);
 
         if (yearIndex > -1) {
@@ -32,7 +31,6 @@ export default function ListMonths({ expenseService }) {
             ? Object.keys(loadedExpenses[loadedYears[yearIndex]])
             : [];
 
-          setFullExpenses(loadedExpenses);
           setExpenses(loadedExpenses);
           setYears(loadedYears);
           setMonths(loadedMonths);
@@ -48,10 +46,14 @@ export default function ListMonths({ expenseService }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year]);
 
+  function getYearsFromExpenses(expenses) {
+    return Object.keys(expenses).sort();
+  }
+
   function handlePrev() {
     const nextYearIndex = currentYearIndex - 1;
     if (nextYearIndex >= 0) {
-      const loadedYears = Object.keys(expenses).sort().reverse();
+      const loadedYears = getYearsFromExpenses(expenses);
       const nextYear = loadedYears[nextYearIndex];
       history.push(`/expenses/${nextYear}/`);
     }
@@ -60,7 +62,7 @@ export default function ListMonths({ expenseService }) {
   function handleNext() {
     const nextYearIndex = currentYearIndex + 1;
     if (nextYearIndex < years.length) {
-      const loadedYears = Object.keys(expenses).sort().reverse();
+      const loadedYears = getYearsFromExpenses(expenses);
       const nextYear = loadedYears[nextYearIndex];
       history.push(`/expenses/${nextYear}/`);
     }
@@ -87,12 +89,11 @@ export default function ListMonths({ expenseService }) {
             {months.map(month => <Link
               to={`/expenses/${years[currentYearIndex]}/${INT_TO_MONTHS[month]}`}
               className={`list-group-item list-group-item-action ${SimpleDate.isCurrentYearMonth({year: years[currentYearIndex], month}) && "list-group-item-dark"}`}
-              key={currentYearIndex + month}
-            >
+              key={currentYearIndex + month}>
               <div className="d-flex w-100 justify-content-between">
                 <h5 className="mb-1">{INT_TO_MONTHS[month]}</h5>
                 <small>
-                  {fullExpenses[years[currentYearIndex]][month].map(e => e.value).reduce((acc, curr) => acc + curr, 0)}€
+                  {expenses[years[currentYearIndex]][month].map(e => e.value).reduce((acc, curr) => acc + curr, 0)}€
                 </small>
               </div>
             </Link>)}
