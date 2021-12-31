@@ -74,11 +74,12 @@ export default function CreateExpense({ expenseService }) {
 
   return (validArgs === false
     ? <Redirect to={{ pathname: "/404-not-found" }} />
-    : <> <OperationTitle
-      title="Expenses"
-      month={MONTHS_TO_INT[month]}
-      year={year}
-      operation="Create" />
+    : <> 
+      <OperationTitle
+        title="Expenses"
+        month={MONTHS_TO_INT[month]}
+        year={year}
+        operation="Create" />
       {saved && <Alert type="success" message="Expense saved successfully" />}
       
       <ExpensesForm

@@ -81,11 +81,12 @@ export default function UpdateExpense({ expenseService }) {
       ? <ErrorList errors={loadingErrors}></ErrorList>
       : notFound ?
         <Redirect to={{ pathname: "/404-not-found" }} />
-        : <> <OperationTitle 
-              title={expense.title}
-              month={expense.from.month}
-              year={expense.from.year}
-              operation="Update" />
+        : <> 
+          <OperationTitle 
+            title={expense.title}
+            month={expense.from.month}
+            year={expense.from.year}
+            operation="Update" />
           {saved && <Alert type="success" message="Expense saved successfully" />}
 
           <ExpensesForm
