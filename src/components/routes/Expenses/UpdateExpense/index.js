@@ -3,10 +3,9 @@ import React, { useEffect, useState } from "react";
 
 import LoadingLine from "../../../util/LoadingLine";
 import ErrorList from "../../../util/ErrorList";
-import Title from "../../../util/Title";
 import Alert from "../../../util/Alert";
 
-import { INT_TO_MONTHS } from "../../../../lib/Constants";
+import OperationTitle from "../../../util/OperationTitle";
 
 export default function UpdateExpense({ expenseService }) {
   const { id } = useParams();
@@ -89,7 +88,11 @@ export default function UpdateExpense({ expenseService }) {
       ? <ErrorList errors={loadingErrors}></ErrorList>
       : notFound ?
         <Redirect to={{ pathname: "/404-not-found" }} />
-        : <> <Title>{expense.title} {INT_TO_MONTHS[expense.from.month]}, {expense.from.year} - Update</Title>
+        : <> <OperationTitle 
+              title={expense.title}
+              month={expense.from.month}
+              year={expense.from.year}
+              operation="Update" />
           {saved && <Alert type="success" message="Expense saved successfully" />}
           <form onSubmit={handleSubmit} noValidate>
 

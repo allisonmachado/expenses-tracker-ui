@@ -2,9 +2,9 @@ import { useParams, Redirect, useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Joi from "joi";
 
+import OperationTitle from "../../../util/OperationTitle";
 import LoadingLine from "../../../util/LoadingLine";
 import ErrorList from "../../../util/ErrorList";
-import Title from "../../../util/Title";
 import Alert from "../../../util/Alert";
 
 import { MONTHS_TO_INT } from "../../../../lib/Constants";
@@ -83,7 +83,11 @@ export default function CreateExpense({ expenseService }) {
 
   return (validArgs === false
     ? <Redirect to={{ pathname: "/404-not-found" }} />
-    : <> <Title>{month} Expenses, {year} - Create</Title>
+    : <> <OperationTitle
+      title="Expenses"
+      month={MONTHS_TO_INT[month]}
+      year={year}
+      operation="Create" />
       {saved && <Alert type="success" message="Expense saved successfully" />}
       <form onSubmit={handleSubmit} noValidate>
 
