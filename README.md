@@ -26,6 +26,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
+- Allow to add expense in mobile (yearly listing)
 - Fix update/create screens inconsistencies
 - Round expenses sum to ovoid big numbers like 890.633333333333
 - Add unpayd total in monthly listing

@@ -6,6 +6,8 @@ import ErrorList from "../../../util/ErrorList";
 import Title from "../../../util/Title";
 import Alert from "../../../util/Alert";
 
+import { INT_TO_MONTHS } from "../../../../lib/Constants";
+
 export default function UpdateExpense({ expenseService }) {
   const { id } = useParams();
 
@@ -87,7 +89,7 @@ export default function UpdateExpense({ expenseService }) {
       ? <ErrorList errors={loadingErrors}></ErrorList>
       : notFound ?
         <Redirect to={{ pathname: "/404-not-found" }} />
-        : <> <Title>Update Expense: {expense.title}</Title>
+        : <> <Title>{expense.title} {INT_TO_MONTHS[expense.from.month]}, {expense.from.year} - Update</Title>
           {saved && <Alert type="success" message="Expense saved successfully" />}
           <form onSubmit={handleSubmit} noValidate>
 
