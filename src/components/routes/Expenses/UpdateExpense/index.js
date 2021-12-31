@@ -1,22 +1,25 @@
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
+import OperationTitle from "../../../util/OperationTitle";
 import LoadingLine from "../../../util/LoadingLine";
 import ErrorList from "../../../util/ErrorList";
 import Alert from "../../../util/Alert";
 
-import OperationTitle from "../../../util/OperationTitle";
+import { useExpenseFormState } from "../../../../hooks/useExpenseFormState";
 
 export default function UpdateExpense({ expenseService }) {
   const { id } = useParams();
 
-  const [expense, setExpense] = useState({
-    title: "",
-    from: { year: 0, month: 0 },
-    value: 0,
-    payd: false,
-    notes: "",
+  const [
+    expense,
+    setExpense,
+    handleFormChange
+  ] = useExpenseFormState({
+    year: 0,
+    month: 0,
   });
+
   const [saved, setSaved] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -25,17 +28,6 @@ export default function UpdateExpense({ expenseService }) {
   const [informError, setInformError] = useState(false);
   const [formError, setFormError] = useState([]);
   const history = useHistory();
-
-  function handleFormChange(event) {
-    const name = event.target.name;
-    const value = event.target.type === "checkbox"
-      ? event.target.checked
-      : event.target.value;
-
-    setExpense({
-      ...expense, [name]: value
-    });
-  }
 
   async function handleSubmit(event) {
     event.preventDefault();

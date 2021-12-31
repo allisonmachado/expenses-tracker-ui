@@ -1,42 +1,34 @@
-import { useParams, Redirect, useHistory } from "react-router-dom";
+import { useHistory, useParams, Redirect, } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Joi from "joi";
 
 import OperationTitle from "../../../util/OperationTitle";
 import LoadingLine from "../../../util/LoadingLine";
 import ErrorList from "../../../util/ErrorList";
 import Alert from "../../../util/Alert";
+import Joi from "joi";
 
 import { MONTHS_TO_INT } from "../../../../lib/Constants";
+
+import { useExpenseFormState } from "../../../../hooks/useExpenseFormState";
 
 export default function CreateExpense({ expenseService }) {
   const { year } = useParams();
   const { month } = useParams();
 
-  const [expense, setExpense] = useState({
-    title: "",
-    from: { year, month: MONTHS_TO_INT[month] },
-    value: 0,
-    payd: false,
-    notes: "",
+  const [
+    expense, ,
+    handleFormChange
+  ] = useExpenseFormState({
+    year,
+    month: MONTHS_TO_INT[month],
   });
+
   const [saved, setSaved] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState([]);
   const [informError, setInformError] = useState(false);
-  const history = useHistory();
   const [validArgs, setValidArgs] = useState(null);
-
-  function handleFormChange(event) {
-    const name = event.target.name;
-    const value = event.target.type === "checkbox"
-      ? event.target.checked
-      : event.target.value;
-
-    setExpense({
-      ...expense, [name]: value
-    });
-  }
+  const history = useHistory();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -61,17 +53,16 @@ export default function CreateExpense({ expenseService }) {
     }
   }
 
-  const inputSchema = Joi.object({
-    year: Joi.number()
-      .min(0)
-      .max(3000)
-      .required(),
-    month: Joi.string()
-      .valid(...Object.keys(MONTHS_TO_INT))
-      .required(),
-  });
-
   useEffect(() => {
+    const inputSchema = Joi.object({
+      year: Joi.number()
+        .min(0)
+        .max(3000)
+        .required(),
+      month: Joi.string()
+        .valid(...Object.keys(MONTHS_TO_INT))
+        .required(),
+    });
     function checkValidArgs(year, month) {
       const { error } = inputSchema.validate({ year, month });
       return !error;
