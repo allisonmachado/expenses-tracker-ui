@@ -147,7 +147,7 @@ export default function ListExpenses({ expenseService }) {
               <h1>{month} Expenses, {year}</h1>
               <h5>Total: {expenses.map(e => e.value).reduce((acc, curr) => acc + curr, 0)}€</h5>
             </div>
-            <div className="col-md-2 d-none d-lg-block d-xl-block">
+            <div className="col-md-2">
               <Link to={`${url}/create`} className="btn btn-light btn-block">
                 <i className="bi-plus"></i> New Expense
               </Link>

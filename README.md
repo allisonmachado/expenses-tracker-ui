@@ -26,7 +26,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Tasks Queue
 
-- Allow editing in the mobile screen
+- Fix update/create screens inconsistencies
 - Round expenses sum to ovoid big numbers like 890.633333333333
 - Add unpayd total in monthly listing
 - Allow cloning some period to any date
@@ -35,3 +35,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
   - Use custom hooks to reuse code inside components
   - Remove ignore lines from linter
 - Replicate expenses to Revenues
+- Registrar income/salário
