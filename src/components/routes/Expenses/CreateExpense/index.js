@@ -2,8 +2,8 @@ import { useHistory, useParams, Redirect, } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import OperationTitle from "../../../util/OperationTitle";
+import ExpensesForm from "../../../util/ExpensesForm";
 import LoadingLine from "../../../util/LoadingLine";
-import ErrorList from "../../../util/ErrorList";
 import Alert from "../../../util/Alert";
 import Joi from "joi";
 
@@ -80,62 +80,15 @@ export default function CreateExpense({ expenseService }) {
       year={year}
       operation="Create" />
       {saved && <Alert type="success" message="Expense saved successfully" />}
-      <form onSubmit={handleSubmit} noValidate>
-
-        <div className="form-group">
-          <label htmlFor="titleInput">Title<strong className="text-danger">*</strong></label>
-          <input
-            id="titleInput"
-            className="form-control"
-            type="text"
-            name="title"
-            value={expense.title}
+      
+      <ExpensesForm
+            handleFormChange={handleFormChange}
+            handleSubmit={handleSubmit}
+            informError={informError}
             disabled={disabled}
-            onChange={handleFormChange} />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="valueInput">Value</label>
-          <input
-            id="valueInput"
-            className="form-control"
-            type="number"
-            name="value"
-            value={expense.value}
-            disabled={disabled}
-            onChange={handleFormChange} />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="notesInput">Notes</label>
-          <textarea
-            id="notesInput"
-            className="form-control"
-            rows="3"
-            name="notes"
-            value={expense.notes}
-            disabled={disabled}
-            onChange={handleFormChange}>
-          </textarea>
-
-          <div className="form-check">
-            <input
-              id="paydInput"
-              className="form-check-input"
-              type="checkbox"
-              name="payd"
-              value={expense.payd}
-              disabled={disabled}
-              onChange={handleFormChange} />
-            <label htmlFor="paydInput">Payd</label>
-          </div>
-        </div>
-
-        {informError && <ErrorList errors={[error]}></ErrorList>}
-        {saved || <button type="submit" className="btn btn-light" disabled={disabled}>
-          <i className="bi bi-save"></i> Save
-        </button>}
-      </form>
+            expense={expense}
+            saved={saved}
+            error={error} />
 
       {saved && <button className="btn btn-secondary" onClick={() => history.goBack()}>
         <i className="bi-arrow-left-short"></i> Back
