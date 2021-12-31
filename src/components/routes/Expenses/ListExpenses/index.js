@@ -4,6 +4,7 @@ import Joi from "joi";
 
 import Alert from "../../../util/Alert";
 import Title from "./Title";
+import PrevNext from "../../../util/PrevNext";
 import ErrorList from "../../../util/ErrorList";
 import PaydBadge from "../../../util/PaydBadge";
 import SimpleDate from "../../../../lib/SimpleDate";
@@ -181,18 +182,7 @@ export default function ListExpenses({ expenseService }) {
             </div>
           </div>)}
           <hr></hr>
-          <div className="row">
-            <div className="col">
-              <button type="button" className="btn btn-light float-left" onClick={() => handlePrev()}>
-                <i className="bi-arrow-left-short"></i> Prev
-              </button>
-            </div>
-            <div className="col">
-              <button type="button" className="btn btn-light float-right" onClick={() => handleNext()}>
-                Next <i className="bi-arrow-right-short"></i>
-              </button>
-            </div>
-          </div>
+          <PrevNext handlePrev={handlePrev} handleNext={handleNext}/>
           <ConfirmationModal
             id="deleteExpenseConfirmationModal"
             title="Confirmation"
