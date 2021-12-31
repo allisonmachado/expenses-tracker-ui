@@ -47,7 +47,7 @@ export default function LoginPage({ authService }) {
 
   return (<>
     <Title>Login</Title>
-    <form onSubmit={handleSubmit} noValidate>
+    <form noValidate>
       <div className="form-group">
         <label htmlFor="emailInput">Email address</label>
         <input
@@ -75,8 +75,14 @@ export default function LoginPage({ authService }) {
         onChange={(token) => setRecaptchaToken(token)}
       />
       {informError && <ErrorList errors={[error]}></ErrorList>}
-      <button type="submit" className="btn btn-primary" disabled={disabled}>Submit</button>
     </form>
+    <button
+      type="button"
+      className="btn btn-primary"
+      onClick={handleSubmit}
+      disabled={disabled}>
+        Submit
+    </button>
     <br></br>
     {disabled && <LoadingLine>Loading...</LoadingLine>}
   </>);

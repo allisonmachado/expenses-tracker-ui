@@ -28,9 +28,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 - Allow editing in the mobile screen
 - Allow cloning some period to any date
-- Fix application title: it's not node-boost
 - Add unpayd total in monthly listing
-- improve login screen to only submit form after recaptcha is filled
 - Code/Components refactoring
   - Use custom hooks to reuse code inside components
   - Remove ignore lines from linter
