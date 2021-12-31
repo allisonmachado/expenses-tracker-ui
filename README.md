@@ -27,12 +27,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Tasks Queue
 
 - Allow editing in the mobile screen
-- Allow cloning some period to any date
+- Round expenses sum to ovoid big numbers like 890.633333333333
 - Add unpayd total in monthly listing
+- Allow cloning some period to any date
+- Create progressive webapp
 - Code/Components refactoring
   - Use custom hooks to reuse code inside components
   - Remove ignore lines from linter
-- Create progressive webapp
 - Replicate expenses to Revenues
-- Upgrade current frontent to use [Reactstrap](https://reactstrap.github.io/?path=/story/home-installation--page)
-- add terms of use page: https://favicon.io/terms-of-use/
