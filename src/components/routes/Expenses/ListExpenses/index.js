@@ -135,6 +135,19 @@ export default function ListExpenses({ expenseService }) {
     }
   }
 
+  function sumTotal(expenses) {
+    return expenses
+      .map(e => e.value)
+      .reduce((acc, curr) => acc + curr, 0);
+  }
+
+  function sumTotalUnpaid(expenses) {
+    return expenses
+      .filter(e => !e.payd)
+      .map(e => e.value)
+      .reduce((acc, curr) => acc + curr, 0);
+  }
+
   return (loading ?
     <LoadingLine>Loading...</LoadingLine>
     : errors.length > 0
@@ -145,7 +158,7 @@ export default function ListExpenses({ expenseService }) {
           <div className="row">
             <div className="col-md-10">
               <h1>{month} Expenses, {year}</h1>
-              <h5>Total: {expenses.map(e => e.value).reduce((acc, curr) => acc + curr, 0).toFixed(2)}€</h5>
+              <h5>Total: {sumTotal(expenses).toFixed(2)}€{sumTotalUnpaid(expenses) > 0 ? <>, Unpaid: {sumTotalUnpaid(expenses).toFixed(2)}€</> : undefined}</h5>
             </div>
             <div className="col-md-2">
               <Link to={`${url}/create`} className="btn btn-light btn-block">
