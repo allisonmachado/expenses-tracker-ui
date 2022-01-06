@@ -23,14 +23,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Tasks Queue
-
-- Allow cloning some period to any date
-- form text input add max characters
-- Code/Components refactoring
-  - Use custom hooks to reuse code inside components
-  - Remove ignore lines from linter
-- Create progressive webapp
-- Replicate expenses to Revenues
-- Registrar income/salário
