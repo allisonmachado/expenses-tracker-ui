@@ -29,8 +29,8 @@ export default class ExpenseService {
     return this.expenseFetch.delete(id, loggedUser?.accessToken);
   }
 
-  async clone(period) {
+  async clone({ sourceDate, targetDate }) {
     const loggedUser = this.authRepository.getAuthenticatedUser();
-    return this.expenseFetch.clone(period, loggedUser?.accessToken);
+    return this.expenseFetch.clone({ sourceDate, targetDate }, loggedUser?.accessToken);
   }
 }

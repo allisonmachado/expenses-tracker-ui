@@ -84,17 +84,22 @@ export default function ListExpenses({ expenseService }) {
     }
   }
 
-  async function cloneExpenses({ year, month }) {
-    console.log("cloneExpenses: ", year, month);
-    // try {
-    //   await expenseService.clone({
-    //     year: Number(year),
-    //     month: monthNumber
-    //   });
-    //   notifySuccessAlert(`"${month} Expenses, ${year}" cloned successfully`, 3);
-    // } catch (error) {
-    //   notifyErrorAlert(error.message, 3);
-    // }
+  async function cloneExpenses({ year: targetYear, month: targetMonth }) {
+    try {
+      await expenseService.clone({
+        sourceDate: {
+          year: Number(year),
+          month: monthNumber
+        },
+        targetDate: {
+          year: targetYear,
+          month: targetMonth,
+        }
+      });
+      notifySuccessAlert(`"${month} Expenses, ${year}" cloned successfully`, 3);
+    } catch (error) {
+      notifyErrorAlert(error.message, 3);
+    }
   }
 
   async function togglePayd(expense) {

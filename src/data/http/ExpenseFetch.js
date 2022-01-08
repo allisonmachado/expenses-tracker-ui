@@ -70,13 +70,13 @@ export default class ExpenseFetch extends BaseFetch {
     });
   }
 
-  async clone(period, accessToken) {
+  async clone({ sourceDate, targetDate }, accessToken) {
     const method = "POST";
     const headers = new Headers({
       "Authorization": `Bearer ${accessToken}`,
       "Content-Type": "application/json"
     });
-    const body = JSON.stringify(period);
+    const body = JSON.stringify({ sourceDate, targetDate });
 
     await this.fetch({
       path: "/clone",
