@@ -1,19 +1,17 @@
-import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
 import { INT_TO_MONTHS } from "../../../lib/Constants";
 
 import SimpleDate from "../../../lib/SimpleDate";
 
-export default function CreateExpenseModal() {
-  const history = useHistory();
-  const currentDate = SimpleDate.getCurrentYearMonth();
+export default function CloneExpenseModal({ actionHandler }) {
+  const { year: currentYear } = SimpleDate.getCurrentYearMonth();
 
-  const [month, setMonth] = useState(currentDate.month);
-  const [year, setYear] = useState(currentDate.year);
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
 
   const monthOptions = Array.from({ length: 12 }, (_, i) => i + 1);
-  const yearOptions = [year + 1, ...Array.from({ length: 4 }, (_, i) => year - i)];
+  const yearOptions = [currentYear + 1, ...Array.from({ length: 4 }, (_, i) => currentYear - i)];
 
   function handleYearChange(event) {
     setYear(event.target.value);
@@ -23,17 +21,22 @@ export default function CreateExpenseModal() {
     setMonth(event.target.value);
   }
 
+  function isButtonDisabled() {
+    return month === "" || year === "";
+  }
+
   return (
-    <div className="modal fade" id="createExpenseModal" tabIndex={-1} aria-labelledby="createExpenseModalLabel" aria-hidden="true">
+    <div className="modal fade" id="cloneExpenseModal" tabIndex={-1} aria-labelledby="cloneExpenseModalLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="createExpenseModalLabel">Please select the period</h5>
+            <h5 className="modal-title" id="cloneExpenseModalLabel">Please select the target period</h5>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
           <div className="modal-body">
+            <p>The expenses from this month will be copied to the target period.</p>
             <form noValidate>
               <div className="form-group">
                 <label htmlFor="yearInput">Year</label>
@@ -42,6 +45,7 @@ export default function CreateExpenseModal() {
                   value={year}
                   onChange={handleYearChange}
                   className="custom-select">
+                  <option value="">Select a year</option>
                   {yearOptions.map((year, index) => <option key={index} value={year}>{year}</option>)}
                 </select>
               </div>
@@ -52,6 +56,7 @@ export default function CreateExpenseModal() {
                   value={month}
                   onChange={handleMonthChange}
                   className="custom-select">
+                  <option value="">Select a month</option>
                   {monthOptions.map((month, index) => <option key={index} value={month}>{INT_TO_MONTHS[month]}</option>)}
                 </select>
               </div>
@@ -62,7 +67,8 @@ export default function CreateExpenseModal() {
               type="button"
               className="btn btn-light"
               data-dismiss="modal"
-              onClick={() => history.push(`/expenses/${year}/${INT_TO_MONTHS[month]}/create`)}>
+              disabled={isButtonDisabled()}
+              onClick={() => actionHandler({ year, month })}>
                 <i className="bi bi-check"></i> 
                 Confirm
             </button>
